@@ -1,4 +1,4 @@
-"""Streaming OpenAI Chat Completions API example."""
+"""Streaming OpenRouter Chat Completions API example."""
 
 import os
 
@@ -6,8 +6,9 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 
-MODEL_NAME = "gpt-5.6-luna"
-API_KEY_ENVIRONMENT_VARIABLE = "OPENAI_API_KEY"
+MODEL_NAME = "deepseek-v4-flash"
+API_KEY_ENVIRONMENT_VARIABLE = "OPENROUTER_API_KEY"
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 SYSTEM_PROMPT = "You are a helpful assistant. Answer clearly and concisely."
 SYSTEM_ROLE = "system"
 USER_ROLE = "user"
@@ -16,7 +17,7 @@ EXIT_COMMAND = "quit"
 PROMPT_TEXT = "You: "
 ASSISTANT_PREFIX = "Assistant: "
 EXIT_MESSAGE = "Goodbye!"
-MISSING_API_KEY_MESSAGE = "OPENAI_API_KEY environment variable is not set."
+MISSING_API_KEY_MESSAGE = "OPENROUTER_API_KEY environment variable is not set."
 
 
 def main() -> None:
@@ -25,7 +26,7 @@ def main() -> None:
     if not api_key:
         raise RuntimeError(MISSING_API_KEY_MESSAGE)
 
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(api_key=api_key, base_url=OPENROUTER_BASE_URL)
     messages = [{"role": SYSTEM_ROLE, "content": SYSTEM_PROMPT}]
 
     while True:
