@@ -22,8 +22,9 @@ def main() -> None:
 
     response = client.responses.create(
         model="gpt-5.6-luna",
-        input="Explain what the OpenAI Responses API is in one short paragraph.",
-        reasoning={"effort": "minimal"},
+        reasoning={"effort": "low"},
+        max_output_tokens=512,
+        input="Explain what is the OpenAI Responses API in simple terms, max 2 sentences."
     )
 
     print(response.output_text)
